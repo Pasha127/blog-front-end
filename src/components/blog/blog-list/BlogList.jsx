@@ -1,14 +1,14 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import posts from "../../../data/posts.json";
+/* import posts from "../../../data/posts.json"; */
 import BlogItem from "../blog-item/BlogItem";
 import { useState } from "react"
 import { useEffect } from "react"
 
 const BlogList = (props) => {
-  const [authors, setAuthors] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   
-  const fetchAuthors = async () => {
+  const fetchBlogPosts = async () => {
     const options = {
       method: 'GET' ,
        headers: {
@@ -16,25 +16,25 @@ const BlogList = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `http://localhost:3001/authors`
-      console.log("fetch authors")
+      const baseEndpoint = `http://localhost:3001/blogPosts`
+      console.log("fetch blogs")
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
         const data = await response.json()
-        setAuthors(data)
-            console.log("authors:", data);
+        setBlogs(data)
+            console.log("blogs:", data);
           } else {
             alert('Error fetching results')
     }
   }
   
   useEffect(() => {
-        fetchAuthors()
+        fetchBlogPosts()
      }, [])
 
   return (
     <Row>
-      {posts.map((post,i) => (
+      {blogs.length > 0 && blogs.map((post,i) => (
         <Col
           md={4}
           style={{

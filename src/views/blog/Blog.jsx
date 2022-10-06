@@ -3,31 +3,60 @@ import { Container, Image } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 import BlogLike from "../../components/likes/BlogLike";
-import posts from "../../data/posts.json";
+
 import "./styles.css";
 const Blog = (props) => {
+
+
+  const fetchBlogPost = async (id) => {
+    const options = {
+      method: 'GET' ,
+       headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',         
+        } 
+      };      
+      const baseEndpoint = `http://localhost:3001/blogPosts/${id}`
+      console.log("fetch blogs")
+      const response = await fetch(baseEndpoint, options);        
+       if (response.ok) {
+        const data = await response.json()
+        setBlog(data);
+            console.log("blog:", data.readTime.value);
+          } else {
+            alert('Error fetching results')
+    } 
+  }
+
+
+
   const [blog, setBlog] = useState({});
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     const { id } = params;
-    const blog = posts.find((post) => post._id.toString() === id);
-
-    if (blog) {
-      setBlog(blog);
-      setLoading(false);
-    } else {
-      navigate("/404");
-    }
+    fetchBlogPost(id)   
+    
   }, []);
 
-  if (loading) {
+useEffect(()=>{
+  if (blog) {
+    
+    console.log("also", blog)
+    setLoading(false);
+  } else {
+    navigate("/404");
+  }
+}, [blog])
+
+
+ if (loading) {
     return <div>loading</div>;
   } else {
     return (
       <div className="blog-details-root">
-        <Container>
+        {blog && <Container>
           <Image className="blog-details-cover" src={blog.cover} fluid />
           <h1 className="blog-details-title">{blog.title}</h1>
 
@@ -37,7 +66,7 @@ const Blog = (props) => {
             </div>
             <div className="blog-details-info">
               <div>{blog.createdAt}</div>
-              <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div>
+              {blog.readTime && <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div> }
               <div
                 style={{
                   marginTop: 20,
@@ -53,7 +82,7 @@ const Blog = (props) => {
               __html: blog.content,
             }}
           ></div>
-        </Container>
+        </Container>}
       </div>
     );
   }
