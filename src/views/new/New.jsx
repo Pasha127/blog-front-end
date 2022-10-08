@@ -40,7 +40,7 @@ const NewBlogPost = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const postObj = {category,title, cover:coverPic ,readTime:{value: readTime, unit: "minutes"},author:{name:author,avatar},content:text}
+    const postObj = {category,title, cover:coverPic ,readTime:{value: readTime, unit: "minute"},author:{name:author,avatar},content:text}
     console.log(postObj);
     postNewBlog(postObj);
   }
