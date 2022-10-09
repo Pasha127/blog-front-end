@@ -3,11 +3,11 @@ import { Col, Image, Row } from "react-bootstrap";
 import "./styles.css";
 
 const BlogAuthor = (props) => {
-  const { name, avatar } = props;
+  const { name, _id } = props;
   return (
     <Row>
       <Col xs={2}>
-        <Image className="blog-author" src={avatar} roundedCircle />
+        <Image className="blog-author" src={`http://localhost:3001/images/${_id}/cover`} roundedCircle />
       </Col>
       <Col>
         <div>by</div>

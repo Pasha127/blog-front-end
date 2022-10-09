@@ -3,6 +3,7 @@ import { Container, Image } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 import BlogLike from "../../components/likes/BlogLike";
+import CommentSection from "./CommentSection/CommentSection";
 
 import "./styles.css";
 const Blog = (props) => {
@@ -57,7 +58,7 @@ useEffect(()=>{
     return (
       <div className="blog-details-root">
         {blog && <Container>
-          <Image className="blog-details-cover" src={blog.cover} fluid />
+          <Image className="blog-details-cover" src={`http://localhost:3001/images/${props.id}/cover`} fluid />
           <h1 className="blog-details-title">{blog.title}</h1>
 
           <div className="blog-details-container">
@@ -83,6 +84,7 @@ useEffect(()=>{
             }}
           ></div>
         </Container>}
+        <CommentSection/>
       </div>
     );
   }
