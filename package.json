@@ -2,7 +2,7 @@
   "name": "strive-blog-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://{username}.github.io",
+  "homepage": "https://pasha127.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
