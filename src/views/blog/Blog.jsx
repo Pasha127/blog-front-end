@@ -23,7 +23,7 @@ const Blog = (props) => {
        if (response.ok) {
         const data = await response.json()
         setBlog(data);
-            console.log("blog:", data.readTime.value);
+            /* console.log("blog:", data.readTime.value); */
           } else {
             alert('Error fetching results')
     } 
@@ -44,7 +44,7 @@ const Blog = (props) => {
 useEffect(()=>{
   if (blog) {
     
-    console.log("also", blog)
+    /* console.log("also", blog) */
     setLoading(false);
   } else {
     navigate("/404");

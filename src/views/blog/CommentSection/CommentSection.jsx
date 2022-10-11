@@ -7,8 +7,8 @@ import SingleComment from "./SingleComment"
 const CommentSection =()=>{
     return(<>
     <Container>
-        {comments.map(comment =>(
-            <Row>
+        {comments.map((comment,i) =>(
+            <Row key={i+comment.author}>
                 <SingleComment comment={comment.comment} author={comment.author} />
             </Row>
         ) )}

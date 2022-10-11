@@ -17,12 +17,12 @@ const BlogList = (props) => {
         } 
       };      
       const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts`
-      console.log("fetch blogs")
+      /* console.log("fetch blogs") */
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
         const data = await response.json()
         setBlogs(data)
-            console.log("blogs:", data);
+            /* console.log("blogs:", data); */
           } else {
             alert('Error fetching results')
     }
@@ -42,7 +42,7 @@ const BlogList = (props) => {
             marginBottom: 50,
           }}
         >
-          <BlogItem  {...post}>{console.log(post.title, i)}</BlogItem>
+          <BlogItem  {...post}>{/* console.log(post.title, i) */}</BlogItem>
         </Col>
       ))}
     </Row>
