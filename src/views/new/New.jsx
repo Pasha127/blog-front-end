@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./styles.css";
 import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
+
 const NewBlogPost = (props) => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
