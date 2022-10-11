@@ -16,7 +16,7 @@ const BlogList = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `http://localhost:3001/blogPosts`
+      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts`
       console.log("fetch blogs")
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {

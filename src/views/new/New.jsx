@@ -28,7 +28,7 @@ const postAvatar = async (id) =>{
     method: 'POST',
     body: {image:avatar}
     };
-    const baseEndpoint = `http://localhost:3001/blogPosts/images/${id}/avatar`
+    const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts/images/${id}/avatar`
     try {    
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {           
@@ -48,7 +48,7 @@ const postCover = async (id) =>{
     method: 'POST',          
     body: {image:coverPic}
     };
-    const baseEndpoint = `http://localhost:3001/blogPosts/images/${id}/cover`
+    const baseEndpoint = `https://frog-leg-warmers.cyclic.app/blogPosts/images/${id}/cover`
     try {    
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {           
@@ -119,7 +119,7 @@ const readCover = (e)=>{
           },
           body: JSON.stringify(postObj)
       };
-      const baseEndpoint = `http://localhost:3001/blogPosts`
+      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts`
     /* console.log("1 submit-post")  */   
       try {
         /* console.log("2 submit-post",baseEndpoint) */        
