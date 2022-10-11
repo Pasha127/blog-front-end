@@ -14,14 +14,10 @@ const NewBlogPost = (props) => {
   const [category, setCategory] = useState("Politics");
   const [avatarDataURL, setAvatarDataURL] = useState({});
   const [coverDataURL, setCoverDataURL] = useState({});
-  let avatarURL = "";
-  let coverURL = "";
-
 
   const handleChange = useCallback((value) => {
     setText(value);
   });
-
 
 const postAvatar = async (id) =>{
   const options = {
