@@ -21,6 +21,7 @@ const NewBlogPost = (props) => {
   const handleChange = useCallback((value) => {
     setText(value);
   });
+  
 
 const postAvatar = async (id) =>{
   const options = {
@@ -41,6 +42,8 @@ const postAvatar = async (id) =>{
       console.log(error)
     }finally{console.log("3 submit-post");}
   }
+
+
 const postCover = async (id) =>{
   const options = {
     method: 'POST',
