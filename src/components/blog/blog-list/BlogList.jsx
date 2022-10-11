@@ -36,12 +36,13 @@ const BlogList = (props) => {
     <Row>
       {blogs.length > 0 && blogs.map((post,i) => (
         <Col
+          key={post.title+i}
           md={4}
           style={{
             marginBottom: 50,
           }}
         >
-          <BlogItem key={post.title+i} {...post}>{console.log(post.title, i)}</BlogItem>
+          <BlogItem  {...post}>{console.log(post.title, i)}</BlogItem>
         </Col>
       ))}
     </Row>
