@@ -21,12 +21,11 @@ const NewBlogPost = (props) => {
   const handleChange = useCallback((value) => {
     setText(value);
   });
-  
+
 
 const postAvatar = async (id) =>{
   const options = {
     method: 'POST',
-    headers:{"Content-Type":"multipart/form-data"},        
     body: {image:avatar}
     };
     const baseEndpoint = `http://localhost:3001/blogPosts/images/${id}/avatar`
@@ -46,8 +45,7 @@ const postAvatar = async (id) =>{
 
 const postCover = async (id) =>{
   const options = {
-    method: 'POST',
-    headers:{"Content-Type":"multipart/form-data"},           
+    method: 'POST',          
     body: {image:coverPic}
     };
     const baseEndpoint = `http://localhost:3001/blogPosts/images/${id}/cover`

@@ -10,7 +10,7 @@ const BlogItem = (props) => {
   return (
     <Link to={`/blog/${_id}`} className="blog-link">
       <Card className="blog-card">
-        <Card.Img variant="top" src={`http://localhost:3001/images/${_id}/cover`} className="blog-cover" />
+        <Card.Img variant="top" src={`https://res.cloudinary.com/dirwjcohx/image/upload/v1665498604/BlogPics/d4y4rdzdtheewqydifw2.png`} className="blog-cover" />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
         </Card.Body>

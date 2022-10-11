@@ -7,7 +7,7 @@ const BlogAuthor = (props) => {
   return (
     <Row>
       <Col xs={2}>
-        <Image className="blog-author" src={`http://localhost:3001/images/${_id}/cover`} roundedCircle />
+        <Image className="blog-author" src={`https://res.cloudinary.com/dirwjcohx/image/upload/v1665498604/BlogPics/d4y4rdzdtheewqydifw2.png`} roundedCircle />
       </Col>
       <Col>
         <div>by</div>
