@@ -36,7 +36,7 @@ const Blog = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts/${id}/pdf`
+      const baseEndpoint = `http://localhost:3000/blogPosts/${id}/pdf`
       console.log("fetch blogs")
       const response = await fetch(baseEndpoint, options);        
        if (response.ok) {
