@@ -90,12 +90,11 @@ useEffect(()=>{
               <div className="blogInteractionContainer"
               >
                 <BlogLike defaultLikes={["123"]} onChange={console.log} />
+                <a href={`http://localhost:3000/blogPosts/${params.id}/pdf`}>
                 <Button
                  variant="outline-secondary"
-                 onClick={()=>{
-                  downloadPDF(params.id)
-                 }}
-                 >Download PDF</Button>
+                 
+                 >Download PDF</Button></a>
               </div>
             </div>
           </div>
