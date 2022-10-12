@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Image } from "react-bootstrap";
+import { Container, Image, Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 import BlogLike from "../../components/likes/BlogLike";
@@ -18,6 +18,25 @@ const Blog = (props) => {
         } 
       };      
       const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts/${id}`
+      console.log("fetch blogs")
+      const response = await fetch(baseEndpoint, options);        
+       if (response.ok) {
+        const data = await response.json()
+        setBlog(data);
+            /* console.log("blog:", data.readTime.value); */
+          } else {
+            alert('Error fetching results')
+    } 
+  }
+  const downloadPDF = async (id) => {
+    const options = {
+      method: 'GET' ,
+       headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',         
+        } 
+      };      
+      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts/${id}/pdf`
       console.log("fetch blogs")
       const response = await fetch(baseEndpoint, options);        
        if (response.ok) {
@@ -68,12 +87,15 @@ useEffect(()=>{
             <div className="blog-details-info">
               <div>{blog.createdAt}</div>
               {blog.readTime && <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div> }
-              <div
-                style={{
-                  marginTop: 20,
-                }}
+              <div className="blogInteractionContainer"
               >
                 <BlogLike defaultLikes={["123"]} onChange={console.log} />
+                <Button
+                 variant="outline-secondary"
+                 onClick={()=>{
+                  downloadPDF(params.id)
+                 }}
+                 >Download PDF</Button>
               </div>
             </div>
           </div>
