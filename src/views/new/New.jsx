@@ -11,6 +11,7 @@ const NewBlogPost = (props) => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
   const [coverPic, setCoverPic] = useState("");
   const [readTime, setReadTime] = useState("");
@@ -145,7 +146,7 @@ const readCover = (e)=>{
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const postObj = {category,title, cover:"https://placekitten.com/600/600" ,readTime:{value: readTime, unit: "minute"},author:{name:author,avatar:"https://placekitten.com/60/60"},content:text}
+    const postObj = {category,title, cover:"https://placekitten.com/600/600" ,readTime:{value: readTime, unit: "minute"},author:{name:author,avatar:"https://placekitten.com/60/60",email},content:text}
     console.log(postObj);
     postNewBlog(postObj);
   }
@@ -162,9 +163,11 @@ const readCover = (e)=>{
                           onChange={(e)=>{readAvatar(e)}}></input>
                           {avatar && <img className="uploaded-pic" src={avatarDataURL} alt="avatar"/>}
                           </div>
-        <Form.Group controlId="blog-form" className="mt-3 ml-5 col-10">
+        <Form.Group controlId="blog-form" className="mt-1 ml-5 col-10">
           <Form.Label>Author</Form.Label>
           <Form.Control size="lg" placeholder="Author"onChange={(e)=>(setAuthor(e.target.value)/* ,console.log(author) */)} />
+          <Form.Label>E-mail</Form.Label>
+          <Form.Control size="lg" placeholder="E-mail"onChange={(e)=>(setEmail(e.target.value)/* ,console.log(author) */)} />
         </Form.Group>
         </Row>
 
