@@ -127,7 +127,7 @@ const readCover = (e)=>{
         if (response.ok) {           
           const data = await response.json()
           console.log(data._id);
-          await postPics(data._id)          
+          /* await postPics(data._id) */          
           alert('Successfully posted new article!')
        } else {
          alert('Error fetching results')
