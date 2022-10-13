@@ -26,6 +26,9 @@ const NewBlogPost = (props) => {
 const postAvatar = async (id) =>{
   const options = {
     method: 'POST',
+    headers:{
+      "Content-Type":"multipart/form-data; boundary=----xxx"
+    },  
     body: {image:avatar}
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/avatar`
@@ -45,7 +48,10 @@ const postAvatar = async (id) =>{
 
 const postCover = async (id) =>{
   const options = {
-    method: 'POST',          
+    method: 'POST', 
+    headers:{
+      "Content-Type": "multipart/form-data; boundary=----xxx"
+    },        
     body: {image:coverPic}
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/cover`
@@ -127,7 +133,7 @@ const readCover = (e)=>{
         if (response.ok) {           
           const data = await response.json()
           console.log(data._id);
-          /* await postPics(data._id) */          
+          await postPics(data._id)          
           alert('Successfully posted new article!')
        } else {
          alert('Error fetching results')
@@ -182,16 +188,7 @@ const readCover = (e)=>{
           <Form.Label>Title</Form.Label>
           <Form.Control size="lg" placeholder="Title"onChange={(e)=>(setTitle(e.target.value)/* ,console.log(title) */)} />
         </Form.Group>
-        </Row>
-        
-        {/* <Form.Group controlId="blog-form" className="mt-3">
-          <Form.Label>Author Avatar URL</Form.Label>
-          <Form.Control size="lg" placeholder="Author Avatar URL" onChange={(e)=>(setAvatar(e.target.value) )}/>
-        </Form.Group>
-        <Form.Group controlId="blog-form" className="mt-3">
-          <Form.Label>Cover photo URL</Form.Label>
-          <Form.Control size="lg" placeholder="Cover photo URL" onChange={(e)=>(setCoverPic(e.target.value))}/>
-        </Form.Group> */}
+        </Row>                
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Read Time in Minutes</Form.Label>
           <Form.Control size="lg" placeholder="Read Time in Minutes" onChange={(e)=>(setReadTime(e.target.value)/* ,console.log(readTime) */)}/>

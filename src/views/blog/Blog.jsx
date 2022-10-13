@@ -79,7 +79,7 @@ useEffect(()=>{
     return (
       <div className="blog-details-root">
         {blog && <Container>
-          <Image className="blog-details-cover" src={`https://res.cloudinary.com/dirwjcohx/image/upload/v1665498604/BlogPics/d4y4rdzdtheewqydifw2.png`} fluid />
+          <Image className="blog-details-cover" src={blog.cover} fluid />
           <h1 className="blog-details-title">{blog.title}</h1>
 
           <div className="blog-details-container">
