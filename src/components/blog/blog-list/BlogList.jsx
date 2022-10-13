@@ -18,7 +18,7 @@ const BlogList = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `${baseURL}/blogPosts`
+      const baseEndpoint = `${baseURL}/blogPosts/`
       /* console.log("fetch blogs") */
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
