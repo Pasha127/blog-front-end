@@ -6,6 +6,8 @@ import "./styles.css";
 import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
 
 const NewBlogPost = (props) => {
+  const baseURL = "http://localhost:3000"
+  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -25,7 +27,7 @@ const postAvatar = async (id) =>{
     method: 'POST',
     body: {image:avatar}
     };
-    const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts/images/${id}/avatar`
+    const baseEndpoint = `${baseURL}/blogPosts/images/${id}/avatar`
     try {    
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {           
@@ -45,7 +47,7 @@ const postCover = async (id) =>{
     method: 'POST',          
     body: {image:coverPic}
     };
-    const baseEndpoint = `https://frog-leg-warmers.cyclic.app/blogPosts/images/${id}/cover`
+    const baseEndpoint = `${baseURL}/blogPosts/images/${id}/cover`
     try {    
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {           
@@ -116,7 +118,7 @@ const readCover = (e)=>{
           },
           body: JSON.stringify(postObj)
       };
-      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts`
+      const baseEndpoint = `${baseURL}/blogPosts`
     /* console.log("1 submit-post")  */   
       try {
         /* console.log("2 submit-post",baseEndpoint) */        

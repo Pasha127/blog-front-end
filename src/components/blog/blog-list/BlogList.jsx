@@ -6,6 +6,8 @@ import { useState } from "react"
 import { useEffect } from "react"
 
 const BlogList = (props) => {
+  const baseURL = "http://localhost:3000"
+  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
   const [blogs, setBlogs] = useState([]);
   
   const fetchBlogPosts = async () => {
@@ -16,7 +18,7 @@ const BlogList = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts`
+      const baseEndpoint = `${baseURL}/blogPosts`
       /* console.log("fetch blogs") */
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {

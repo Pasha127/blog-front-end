@@ -5,9 +5,11 @@ import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 import BlogLike from "../../components/likes/BlogLike";
 import CommentSection from "./CommentSection/CommentSection";
 
+
 import "./styles.css";
 const Blog = (props) => {
-
+  const baseURL = "http://localhost:3000"
+  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
 
   const fetchBlogPost = async (id) => {
     const options = {
@@ -17,7 +19,7 @@ const Blog = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `https://odd-plum-sawfish-shoe.cyclic.app/blogPosts/${id}`
+      const baseEndpoint = `${baseURL}/blogPosts/${id}`
       console.log("fetch blogs")
       const response = await fetch(baseEndpoint, options);        
        if (response.ok) {
@@ -36,7 +38,7 @@ const Blog = (props) => {
         'Content-Type': 'application/json',         
         } 
       };      
-      const baseEndpoint = `http://localhost:3000/blogPosts/${id}/pdf`
+      const baseEndpoint = `${baseURL}/blogPosts/${id}/pdf`
       console.log("fetch blogs")
       const response = await fetch(baseEndpoint, options);        
        if (response.ok) {
@@ -90,7 +92,7 @@ useEffect(()=>{
               <div className="blogInteractionContainer"
               >
                 <BlogLike defaultLikes={["123"]} onChange={console.log} />
-                <a href={`http://localhost:3000/blogPosts/${params.id}/pdf`}>
+                <a href={`${baseURL}/blogPosts/${params.id}/json`}>
                 <Button
                  variant="outline-secondary"
                  
