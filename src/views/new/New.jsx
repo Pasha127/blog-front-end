@@ -23,13 +23,13 @@ const NewBlogPost = (props) => {
     setText(value);
   });
 
-const postAvatar = async (id) =>{
+const postAvatar = async (id) =>{ 
+  let formData = new FormData()
+  formData.append('image', avatar)
   const options = {
     method: 'POST',
-    headers:{
-      "Content-Type":"multipart/form-data; boundary=----xxx"
-    },  
-    body: {image:avatar}
+    
+    formData
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/avatar`
     try {    
@@ -48,10 +48,7 @@ const postAvatar = async (id) =>{
 
 const postCover = async (id) =>{
   const options = {
-    method: 'POST', 
-    headers:{
-      "Content-Type": "multipart/form-data; boundary=----xxx"
-    },        
+    method: 'POST',          
     body: {image:coverPic}
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/cover`
