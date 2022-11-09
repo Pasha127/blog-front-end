@@ -6,14 +6,14 @@ import "./styles.css";
 import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
 
 const NewBlogPost = (props) => {
-  const baseURL = "http://localhost:3000"
-  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
+ const baseURL = "http://localhost:3000"
+    /*const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [coverPic, setCoverPic] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [coverPic, setCoverPic] = useState(null);
   const [readTime, setReadTime] = useState("");
   const [category, setCategory] = useState("Politics");
   const [avatarDataURL, setAvatarDataURL] = useState({});
@@ -27,9 +27,8 @@ const postAvatar = async (id) =>{
   let formData = new FormData()
   formData.append('image', avatar)
   const options = {
-    method: 'POST',
-    
-    formData
+    method: 'POST',    
+    body: formData
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/avatar`
     try {    
@@ -47,9 +46,11 @@ const postAvatar = async (id) =>{
 
 
 const postCover = async (id) =>{
+  let formData = new FormData()
+  formData.append('image', coverPic)
   const options = {
     method: 'POST',          
-    body: {image:coverPic}
+    body: formData
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/cover`
     try {    
@@ -70,7 +71,7 @@ const postPics = async (id) =>{
   await postCover(id);  
 }
 const readAvatar = (e)=>{
-  const file = e.target.files[e.target.files.length-1]
+  const file = e.target.files[0]
   setAvatar(file);
   let fileReader, isCancel = false;
       if (file) {
@@ -91,7 +92,7 @@ const readAvatar = (e)=>{
       }
 }
 const readCover = (e)=>{
-  const file = e.target.files[e.target.files.length-1]
+  const file = e.target.files[0]
   setCoverPic(file);
   let fileReader, isCancel = false;
       if (file) {
