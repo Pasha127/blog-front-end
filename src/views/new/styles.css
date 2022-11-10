@@ -9,11 +9,14 @@
   margin-bottom: 80px;
 }
 .pic-space{
-  min-height: 150px;
+  height: 150px;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .uploaded-pic{
-  max-height: 150px;
-  position: absolute;
+  max-width: 100%;
+  position: relative;
+  max-height: 100%;
+
 }

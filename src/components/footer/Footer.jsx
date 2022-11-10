@@ -12,7 +12,7 @@ const Footer = (props) => {
       }}
     >
       <Container className="d-flex justify-content-between" >
-        <div>{`${new Date().getFullYear()} - © Strive School | Developed for homework projects.`}</div>
+        <div>{`${new Date().getFullYear()} - © Paul Levitsky | Developed for Epicode.`}</div>
         <a href={`${baseURL}/blogPosts/csv`}><p>Download All Content</p></a>
         </Container>
     </footer>

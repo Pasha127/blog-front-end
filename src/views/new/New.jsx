@@ -161,11 +161,10 @@ const readCover = (e)=>{
     <Container className="new-blog-container">      
       <Form className="mt-5">
         <Row className=" align-items-center">
-          <div className="col-2 d-flex border rounded pic-space">
-        <label htmlFor="avatarUploadBtn"><BsPersonBoundingBox style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsPersonBoundingBox></label>
+          <div className="col-2 p-0 d-flex border rounded pic-space">
+        <label className="uploaded-pic" htmlFor="avatarUploadBtn">{!avatar ? <BsPersonBoundingBox style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsPersonBoundingBox>:<img className="uploaded-pic" src={avatarDataURL} alt="avatar"/>}</label>
                           <input type="file" className="d-none" id="avatarUploadBtn"
                           onChange={(e)=>{readAvatar(e)}}></input>
-                          {avatar && <img className="uploaded-pic" src={avatarDataURL} alt="avatar"/>}
                           </div>
         <Form.Group controlId="blog-form" className="mt-1 ml-5 col-10">
           <Form.Label>Author</Form.Label>
@@ -176,11 +175,10 @@ const readCover = (e)=>{
         </Row>
 
         <Row className=" align-items-center">
-          <div className="col-2 d-flex border rounded pic-space">
-        <label htmlFor="coverUploadBtn"><BsFillImageFill style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsFillImageFill></label>
+          <div className="col-2 p-0 d-flex border rounded pic-space">
+        <label className="uploaded-pic" htmlFor="coverUploadBtn">{!coverPic ? <BsFillImageFill style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsFillImageFill>:<img className="uploaded-pic" src={coverDataURL} alt="avatar"/>}</label>
                           <input type="file" className="d-none" id="coverUploadBtn"
                           onChange={(e)=>{readCover(e)}}></input>
-                          {coverPic && <img className="uploaded-pic" src={coverDataURL} alt="avatar"/>}
                           </div>
         <Form.Group controlId="blog-form" className="mt-3 ml-5 col-10">
           <Form.Label>Title</Form.Label>
