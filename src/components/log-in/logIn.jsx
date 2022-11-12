@@ -1,13 +1,12 @@
 import React, { useCallback, useState } from "react";
-import { Button, Container, Form, Row } from "react-bootstrap";
-
+import { Button, Container, Form, Row,Image } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
 import "./styles.css";
 import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
 
 const LogIn = (props) => {
- const baseURL = "http://localhost:3000"
-    /*const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
+    const baseURL = process.env.REACT_APP_SERVER_URL
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -21,7 +20,8 @@ const postAvatar = async (id) =>{
   let formData = new FormData()
   formData.append('image', avatar)
   const options = {
-    method: 'POST',    
+    method: 'POST',
+    credentials:"include",    
     body: formData
     };
     const baseEndpoint = `${baseURL}/blogPosts/images/${id}/avatar`
@@ -62,16 +62,19 @@ const readAvatar = (e)=>{
 
  const postNewAuthor = async (postObj) => {
     const options = {
+        
       method: 'POST',
-          headers: {"Content-Type": "application/json"       
+      credentials:'include',
+          headers: {"Content-Type": "application/json",
           },
           body: JSON.stringify(postObj)
+        
       };
       const baseEndpoint = `${baseURL}/authors`
     /* console.log("1 submit-post")  */   
       try {
         /* console.log("2 submit-post",baseEndpoint) */        
-        const response = await fetch(baseEndpoint, options);
+        const response = await fetch(baseEndpoint,options);
         if (response.ok) {           
           const data = await response.json()
           console.log(data._id);
@@ -93,39 +96,66 @@ const handleSubmit = (e) => {
     postNewAuthor(postObj);
   }
 
+const handleLogIn = async (e) =>{
+    e.preventDefault()
+    const postObj = {password,email}
+    const options = {        
+        method: 'POST',
+        credentials:'include',
+            headers: {"Content-Type": "application/json",
+            },
+            body: JSON.stringify(postObj)          
+        };
+        const baseEndpoint = `${baseURL}/authors/login`
+        try {     
+          const response = await fetch(baseEndpoint,options);
+          if (response.ok) {           
+            const data = await response.json()
+            console.log(data._id); 
+            props.setLoggedIn(true)        
+            alert('Successfully logged in!')
+         } else {
+           alert('Error fetching results')
+         } 
+        } catch (error) {
+          console.log(error)
+        }finally{console.log("3 submit-post");}
+    
+}
 
 
-  return (
+
+  return (<>
+    <div className="background-gears"></div>
+    <div className="background-gears gear2"></div>
+    <div className="background-gears gear3"></div>
+    <div className="background-gears gear4"></div>
+    <div className="background-gears gear5"></div>
     <Container className="new-blog-container ">      
       {wantLogIn? 
       <div className="log-in-box">
         <Form>
-        <Form.Group controlId="Username" className="mt-1 ml-5 col-10">
-            <Form.Label>Username</Form.Label>
-          <Form.Control size="lg" placeholder="Username"onChange={(e)=>(setUsername(e.target.value))} />
+        <Form.Group controlId="Email" className="mt-1 ml-5 col-12">
+            <Form.Label>Email</Form.Label>
+          <Form.Control size="lg" placeholder="Email"onChange={(e)=>(setEmail(e.target.value))} />
             </Form.Group>
-            <Form.Group controlId="Password" className="mt-1 ml-5 col-10">
+            <Form.Group controlId="Password" className="mt-1 ml-5 col-12">
           <Form.Label>Password</Form.Label>
           <Form.Control size="lg" type="password" placeholder="Password"onChange={(e)=>(setPassword(e.target.value))} />
           </Form.Group> 
-            <Form.Group className="mt-3 ml-5 col-10">
+            <Form.Group className="mt-3 ml-5 col-12 justify-content-around d-flex">
         <Button variant="outline-dark"
-        onClick={(e) => handleSubmit(e)}
+        onClick={(e) => handleLogIn(e)}
         type="submit"
         size="lg"
-        style={{
-          marginLeft: "1em",
-        }}>
+        >
             Log-In
           </Button>
         <Button
             onClick={(e) => setWantLogIn(false)}
             size="lg"
-            variant="dark"
-            style={{
-              marginLeft: "1em",
-            }}
-          >
+            variant="dark"         
+            >
             Register
           </Button>
           </Form.Group>
@@ -133,7 +163,7 @@ const handleSubmit = (e) => {
       </div>
       
       
-      :<Form className="mt-5">
+      :<Form className="mt-5 register-box">
         
           <div className="d-flex justify-content-center">
             <div className="col-2 p-0 d-flex border rounded pic-space">
@@ -142,23 +172,23 @@ const handleSubmit = (e) => {
                           onChange={(e)=>{readAvatar(e)}}></input>
                           </div>
                           </div>
-        <Form.Group controlId="First-Name" className="mt-1 ml-5 col-10">
+        <Form.Group controlId="First-Name" className="mt-1 ml-5 col-12">
           <Form.Label>First Name</Form.Label>
           <Form.Control size="lg" placeholder="First Name"onChange={(e)=>(setFirstName(e.target.value))} />
         </Form.Group>         
-        <Form.Group controlId="Last-Name" className="mt-1 ml-5 col-10">
+        <Form.Group controlId="Last-Name" className="mt-1 ml-5 col-12">
           <Form.Label>Last Name</Form.Label>
           <Form.Control size="lg" placeholder="Last Name"onChange={(e)=>(setLastName(e.target.value))} />
         </Form.Group>         
-        <Form.Group controlId="Username" className="mt-1 ml-5 col-10">
+        <Form.Group controlId="Username" className="mt-1 ml-5 col-12">
           <Form.Label>Username</Form.Label>
           <Form.Control size="lg" placeholder="Username"onChange={(e)=>(setUsername(e.target.value))} />
         </Form.Group>         
-        <Form.Group controlId="Password" className="mt-1 ml-5 col-10">
+        <Form.Group controlId="Password" className="mt-1 ml-5 col-12">
           <Form.Label>Password</Form.Label>
           <Form.Control size="lg" type="password" placeholder="Password"onChange={(e)=>(setPassword(e.target.value))} />
           </Form.Group>         
-        <Form.Group controlId="email" className="mt-1 ml-5 col-10">
+        <Form.Group controlId="email" className="mt-1 ml-5 col-12">
           <Form.Label>E-mail</Form.Label>
           <Form.Control size="lg" placeholder="E-mail"onChange={(e)=>(setEmail(e.target.value))} />
           </Form.Group>         
@@ -172,14 +202,39 @@ const handleSubmit = (e) => {
             size="lg"
             variant="dark"
             style={{
-              marginLeft: "1em",
+                marginLeft: "1em",
             }}
-          >
+            >
             Register
           </Button>
           </Form.Group>         
       </Form>}
     </Container>
+    <div className="d-flex flex-wrap justify-content-center mt-5">
+    <a href="http://localhost:3000/authors/googleLogin">
+    <Button
+            className="oauth-button"
+            size="lg"
+            variant="outline-dark"            
+            >
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4="></img>
+            Sign in with Google
+          </Button></a>
+    <a href="http://localhost:3000/authors/facebookLogin">
+    <Button
+            className="oauth-button"
+            size="lg"
+            variant="outline-dark" 
+            onClick={()=>{
+                window.location.reload()
+            }}           
+            >
+                <img src="https://icons.iconarchive.com/icons/uiconstock/socialmedia/32/Facebook-icon.png"></img>
+            Sign in with Facebook
+          </Button></a>
+        
+    </div>
+              </>
   );
 };
 

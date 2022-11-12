@@ -10,7 +10,7 @@ const NavBar = (props) => {
         <Navbar.Brand as={Link} to="/">
           <img className="blog-navbar-brand" alt="logo" src={logo} />
         </Navbar.Brand>
-
+        <div className="d-flex flex-row">
         <Button
           as={Link}
           to="/new"
@@ -29,6 +29,17 @@ const NavBar = (props) => {
           </svg>
           Post Article
         </Button>
+        <Button
+          onClick={()=>{
+            props.logOut()
+          }}
+          variant="outline-dark"
+          className="blog-navbar-add-button"
+          size="lg"
+        >
+          Log Out
+        </Button>
+        </div>
       </Container>
     </Navbar>
   );

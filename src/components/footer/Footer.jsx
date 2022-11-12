@@ -2,8 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 const Footer = (props) => {
-  const baseURL = "http://localhost:3000"
-  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
+  const baseURL = process.env.REACT_APP_SERVER_URL
   return (
     <footer
       style={{

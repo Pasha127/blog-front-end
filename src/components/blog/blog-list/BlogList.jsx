@@ -6,13 +6,14 @@ import { useState } from "react"
 import { useEffect } from "react"
 
 const BlogList = (props) => {
-  const baseURL = "http://localhost:3000"
-  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
+  const baseURL = process.env.REACT_APP_SERVER_URL
+
   const [blogs, setBlogs] = useState([]);
   
   const fetchBlogPosts = async () => {
     const options = {
       method: 'GET' ,
+      credentials:"include",
        headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',         

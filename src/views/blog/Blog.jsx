@@ -8,8 +8,8 @@ import CommentSection from "./CommentSection/CommentSection";
 
 import "./styles.css";
 const Blog = (props) => {
-  const baseURL = "http://localhost:3000"
-  /* const baseURL = "https://odd-plum-sawfish-shoe.cyclic.app" */
+  const baseURL = process.env.REACT_APP_SERVER_URL
+
 
   const fetchBlogPost = async (id) => {
     const options = {
