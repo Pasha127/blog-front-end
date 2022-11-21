@@ -7,6 +7,7 @@ import NewBlogPost from "./views/new/New";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LogIn from "./components/log-in/logIn";
 import SplashNavBar from "./components/navbar/SplashNavbar";
+import Chat from "./components/chat/Chat";
 
 function App() {
  
@@ -87,7 +88,7 @@ useEffect(()=>{
     <Router>
       {loggedIn?<NavBar currentUser={currentUser} logOut={logOut}  setLoggedIn={setLoggedIn}/>:<SplashNavBar />}
       <Routes>
-        <Route path="/" exact element={!loggedIn? <LogIn  setLoggedIn={setLoggedIn}  />: <Home currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route path="/" exact element={!loggedIn? <LogIn  setLoggedIn={setLoggedIn}  />: <Chat currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
 {/*         <Route path="/home" exact element={<Home currentUser={currentUser} setCurrentUser={setCurrentUser} />} /> */}
         <Route path="/blog/:id" element={!loggedIn? <LogIn    setLoggedIn={setLoggedIn}/>:<Blog currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
         <Route path="/new" element={!loggedIn? <LogIn setLoggedIn={setLoggedIn} />:<NewBlogPost currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
